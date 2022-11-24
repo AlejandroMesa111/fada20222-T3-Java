@@ -48,19 +48,43 @@ public class ArbolRojinegro {
     }
 
     public int maximo() throws Exception {
-        throw new OperationNotSupportedException();
+        ArbolRojinegro nodoActual = this;
+        while (nodoActual.getDer() != null) {
+            nodoActual = nodoActual.getDer();
+        }
+        return nodoActual.getValor();
     }
 
     public int minimo() throws Exception {
-        throw new OperationNotSupportedException();
+        ArbolRojinegro nodoActual = this;
+        while (nodoActual.getIzq() != null) {
+            nodoActual = nodoActual.getIzq();
+        }
+        return nodoActual.getValor();
     }
 
     public ArbolRojinegro search(int x) throws Exception {
-        throw new OperationNotSupportedException();
+        if (this.valor == x) {
+            return this;
+        } else {
+            if (x >= this.valor) {
+                if (this.getDer() != null) {
+                    return this.getDer().search(x);
+                } else {
+                    return null;
+                }
+            } else {
+                if (this.getIzq() != null) {
+                    return this.getIzq().search(x);
+                } else {
+                    return null;
+                }
+            }
+        }
     }
 
     public void rotacionIzquierda(int x) throws Exception {
-        throw new OperationNotSupportedException();
+        this.getDer();
     }
 
     public void rotacionDerecha(int x) throws  Exception {

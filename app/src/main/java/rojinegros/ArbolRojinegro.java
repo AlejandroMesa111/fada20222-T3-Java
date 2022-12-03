@@ -2,6 +2,7 @@ package rojinegros;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.LinkedList;
@@ -19,6 +20,10 @@ public class ArbolRojinegro {
     @Getter
     @Setter
     private int valor;
+
+    @Getter
+    @Setter
+    private ArbolRojinegro father;
 
     @Getter
     @Setter
@@ -84,11 +89,32 @@ public class ArbolRojinegro {
     }
 
     public void rotacionIzquierda(int x) throws Exception {
-        this.getDer();
+        ArbolRojinegro pivote = search(x);
+        ArbolRojinegro ramaIzq = new ArbolRojinegro(this.getIzq(),
+                this.getDer().getIzq(),
+                this.getValor(),
+                true);
+        ArbolRojinegro ramaDer = new ArbolRojinegro(null,
+                null,
+                this.getDer().getDer().getValor(),
+                true);
+        this.setValor(pivote.getValor());
+        this.setIzq(ramaIzq);
+        this.setDer(ramaDer);
     }
 
     public void rotacionDerecha(int x) throws  Exception {
-        throw new OperationNotSupportedException();
+        ArbolRojinegro pivote = search(x);
+        ArbolRojinegro ramaIzq = new ArbolRojinegro(null,
+                null,
+                this.getIzq().getIzq().getValor(),
+                true);
+        ArbolRojinegro ramaDer = new ArbolRojinegro(this.getIzq().getDer(),
+                this.getDer(),this.getValor(),true);
+        this.setValor(pivote.getValor());
+        this.setIzq(ramaIzq);
+        this.setDer(ramaDer);
+
     }
 
     /*

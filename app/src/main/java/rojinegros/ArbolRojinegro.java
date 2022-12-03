@@ -98,7 +98,7 @@ public class ArbolRojinegro {
                 null,
                 this.getDer().getDer().getValor(),
                 true);
-        this.setValor(pivote.getValor());
+        this.setValor(pivote.getDer().getValor());
         this.setIzq(ramaIzq);
         this.setDer(ramaDer);
     }
@@ -111,7 +111,7 @@ public class ArbolRojinegro {
                 true);
         ArbolRojinegro ramaDer = new ArbolRojinegro(this.getIzq().getDer(),
                 this.getDer(),this.getValor(),true);
-        this.setValor(pivote.getValor());
+        this.setValor(pivote.getIzq().getValor());
         this.setIzq(ramaIzq);
         this.setDer(ramaDer);
 

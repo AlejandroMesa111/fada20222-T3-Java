@@ -49,7 +49,27 @@ public class ArbolRojinegro {
      */
 
     public void insertar(int x) throws Exception {
-        throw new OperationNotSupportedException();
+        if (this.valor == 0 && this.father == null) {
+            this.valor = x;
+        } else {
+            if (x >= this.valor) {
+                if (this.der == null) {
+                    this.der = new ArbolRojinegro(null, null, x, true);
+                    this.der.father = this;
+                } else {
+                    this.der.insertar(x);
+                }
+            } else {
+                if (x < this.valor) {
+                    if (this.izq == null) {
+                        this.izq = new ArbolRojinegro(null, null, x, true);
+                        this.izq.father = this;
+                    } else {
+                        this.izq.insertar(x);
+                    }
+                }
+            }
+        }
     }
 
     public int maximo() throws Exception {
@@ -110,7 +130,7 @@ public class ArbolRojinegro {
                 this.getIzq().getIzq().getValor(),
                 true);
         ArbolRojinegro ramaDer = new ArbolRojinegro(this.getIzq().getDer(),
-                this.getDer(),this.getValor(),true);
+                this.getDer(), this.getValor(), true);
         this.setValor(pivote.getIzq().getValor());
         this.setIzq(ramaIzq);
         this.setDer(ramaDer);
